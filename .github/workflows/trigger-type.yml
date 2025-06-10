@@ -5,6 +5,7 @@ on:
     # schedule:
     #   - cron: "*/1 * * * *"
 
+
 env:
     CONTAINER_REGISTRY: docker.io
     IMAGE_NAME: github-actions-nginx
@@ -26,13 +27,15 @@ jobs:
     
     docker-deploy:
         runs-on: ubuntu-latest
+        timeout-minutes: 2
         needs: docker-build
         concurrency: 
           group: production-deployment
           cancel-in-progress: false
         steps:
             - name: docker Run
+              timeout-minutes: 1
               run: |
                 echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
-                sleep 100
+                sleep 180
 
