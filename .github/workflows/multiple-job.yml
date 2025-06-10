@@ -15,21 +15,38 @@ jobs:
             
             - name: Success Message
               run: echo "cowsay installed successfully..."
+            
+            - name: upload artwork.txt file
+              uses: actions/upload-artifact@v4
+              with:
+                name: dragon-artwork-file
+                path: artwork.txt
     
     test_job_2:
         needs: build_job_1
         runs-on: ubuntu-latest
         steps: 
+            - name: Download the artwork.txt file
+              uses: actions/download-artifact@v4
+              with:
+                name: dragon-artwork-file
+
             - name: Test the existense of dragon keyword
               run: grep -i "dragon" artwork.txt
             
             - name: Testing result
               run: echo "Dummy message"
+
     
     deploy_job_3: 
         needs: [test_job_2]
         runs-on: ubuntu-latest
         steps:
+            - name: Download the artwork.txt file
+              uses: actions/download-artifact@v4
+              with:
+                name: dragon-artwork-file
+                
             - name: Display the artwork
               run: cat artwork.txt
             
