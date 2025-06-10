@@ -9,17 +9,5 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v4
             
-            - name: Install cosway using apt
-              run: sudo apt-get install cowsay -y
-            
-            - name: Generate Assci 
-              run: cowsay -f dragon "Run for cover, I am dragon ... RAWR" > artwork.txt
-            
-            - name: Check if file exists
-              run: grep -i dragon "artwork.txt"
-            
-            - name: Display the artwork
-              run: cat artwork.txt
-            
-            - name: List repo files
-              run: ls -lart
+            - name: Execute a script
+              run: ascii-script.sh
