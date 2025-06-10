@@ -12,15 +12,11 @@ jobs:
               uses: actions/checkout@v4
               # actions are readily available tasks used for automating process. Actually they have already automated a lot of process
 
-            - name: Welcome Message
+            - name: Multi line comments
               run: |
                 echo "First Workflow"
-            
-            - name: List the directory
-              run: ls
-            
-            
-            - name: read the Readme file
-              run: |
-                echo "Later PWD: $PWD"
+                ls -lart
                 cat README.md
+            
+            - name: Generat ASCII Artwork
+              run: cowsay -f dragon "Run for cover, I am dragon ... RAWR" > artwork.txt
