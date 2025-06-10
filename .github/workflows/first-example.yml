@@ -4,6 +4,14 @@ jobs:
     first_job_name:
         runs-on: ubuntu-latest
         steps:
+            - name: Current Workfing Path
+              run: |
+                echo "PWD: $PWD"
+
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+              # actions are readily available tasks used for automating process. Actually they have already automated a lot of process
+
             - name: Welcome Message
               run: |
                 echo "First Workflow"
@@ -14,5 +22,5 @@ jobs:
             
             - name: read the Readme file
               run: |
-                echo "PWD: $PWD"
+                echo "Later PWD: $PWD"
                 cat README.md
