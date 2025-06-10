@@ -9,5 +9,11 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v4
             
+            - name: list all files
+              run: ls -lart
+            
             - name: Execute a script
-              run: ascii-script.sh
+              run: |
+                echo "PWD: $PWD"
+                chmod +x ./ascii-script.sh
+                ./ascii-script.sh
