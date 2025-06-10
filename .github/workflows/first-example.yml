@@ -1,0 +1,18 @@
+name: First workflow 
+on: push
+jobs:
+    first_job_name:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Welcome Message
+              run: |
+                echo "First Workflow"
+            
+            - name: List the directory
+              run: ls
+            
+            
+            - name: read the Readme file
+              run: |
+                echo "PWD: $PWD"
+                cat README.md
