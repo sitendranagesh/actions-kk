@@ -17,6 +17,7 @@ jobs:
               run: echo "cowsay installed successfully..."
     
     test_job_2:
+        needs: build_job_1
         runs-on: ubuntu-latest
         steps: 
             - name: Test the existense of dragon keyword
@@ -26,6 +27,7 @@ jobs:
               run: echo "Dummy message"
     
     deploy_job_3: 
+        needs: [test_job_2]
         runs-on: ubuntu-latest
         steps:
             - name: Display the artwork
