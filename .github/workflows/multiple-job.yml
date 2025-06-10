@@ -1,0 +1,35 @@
+name: Multiple Jobs Example
+on:
+    - push
+
+jobs:
+    build_job_1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Install cowsay command
+              run: |
+                sudo apt-get install cowsay -y
+
+            - name: Generate cowsay artwork file
+              run: cowsay -f dragon "Cover yourself, I am a dragon ... RAWR" >> artwork.txt
+            
+            - name: Success Message
+              run: echo "cowsay installed successfully..."
+    
+    test_job_2:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Test the existense of dragon keyword
+              run: grep -i "dragon" artwork.txt
+            
+            - name: Testing result
+              run: echo "Dummy message"
+    
+    deploy_job_3: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display the artwork
+              run: cat artwork.txt
+            
+            - name: Success Message
+              run: echo "The deployment was successful... .. ."
