@@ -1,0 +1,32 @@
+name: Exploring Variables and Secrets
+
+on:
+    schedule:
+      - cron: "*/1 * * * *"
+
+env:
+    CONTAINER_REGISTRY: docker.io
+    IMAGE_NAME: github-actions-nginx
+
+jobs:
+    docker-build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Docker Build
+              run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME}}:latest
+
+            - name: Docker Login
+            #   env:
+            #     DOCKER_PASSWORD: s3cUrePaSsw0rd
+              run: echo docker login --username=${{ vars.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
+
+            - name: Docker Publish
+              run: echo docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{env.IMAGE_NAME}}:latest
+    
+    docker-deploy:
+        runs-on: ubuntu-latest
+        needs: docker-build
+        steps:
+            - name: docker Run
+              run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
+
