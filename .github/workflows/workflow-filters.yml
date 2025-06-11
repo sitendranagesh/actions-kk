@@ -24,4 +24,4 @@ jobs:
     workflow_filters:
         runs-on: ubuntu-latest
         steps:
-            - run: echo "The job is executed with ${{ github.event }}"
+            - run: echo "The job is executed with ${{ github.event_name }}"
