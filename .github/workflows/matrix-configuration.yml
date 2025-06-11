@@ -4,20 +4,32 @@ on:
     workflow_dispatch:
 
 jobs:
-    docker-in-ubuntu:
-        runs-on: ubuntu-latest
+    docker:
+        strategy:
+            matrix:
+                os: [ubuntu-latest, ubuntu-20.04, windows-latest]
+                image: [hello-world, alpine]
+        runs-on: ${{ matrix.os }}
         steps:
             - name: Docker Details
               run: docker info
             
-            - name: Install hello-world image
-              run: docker run hello-world
+            - name: Install ${{ matrix.image }} on ${{ matrix.os }}
+              run: docker run ${{ matrix.image }}
+    # docker-in-ubuntu:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Docker Details
+    #           run: docker info
+            
+    #         - name: Install hello-world image
+    #           run: docker run hello-world
         
-    docker-in-windows:
-        runs-on: windows-latest
-        steps:
-            - name: Docker Details
-              run: docker info
+    # docker-in-windows:
+    #     runs-on: windows-latest
+    #     steps:
+    #         - name: Docker Details
+    #           run: docker info
             
-            - name: Install hello-world image
-              run: docker run hello-world
+    #         - name: Install hello-world image
+    #           run: docker run hello-world
