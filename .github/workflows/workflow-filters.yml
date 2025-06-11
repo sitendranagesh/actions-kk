@@ -4,9 +4,9 @@ on:
     # schedule:
     #     - cron: "*/1 * * * *"
     push:
-        branches-ignore: 
-            - feature/*
-            - test/**
+        # branches-ignore: 
+        #     - feature/*
+        #     - test/**
         branches: 
             - main
             - '!feature/*' # ignore branch starting with filter
