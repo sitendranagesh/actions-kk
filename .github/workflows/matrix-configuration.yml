@@ -14,9 +14,9 @@ jobs:
                 exclude:
                     - os: windows-latest
                       images: alpine
-                # include:
-                #     - os: ubuntu-22.04-arm
-                #       images: hello-world
+                include:
+                    - os: ubuntu-22.04-arm
+                      images: hello-world
         runs-on: ${{ matrix.os }}
         steps:
             - name: Docker Details
