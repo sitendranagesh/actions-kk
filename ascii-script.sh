@@ -6,4 +6,4 @@ grep -i dragon "artwork.txt"
 cat artwork.txt
 ls -lart
 
-# some comment for skip
+# some comment for not skip
